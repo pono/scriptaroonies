@@ -1,0 +1,8 @@
+
+animal:
+  # password
+  build: animal
+  ports:
+    - "sshport:22"
+    - "httpport:8080"
+

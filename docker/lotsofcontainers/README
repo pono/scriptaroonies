@@ -1,0 +1,8 @@
+This is a script to build out personalized Dockerfiles for use with
+docker-compose.  Originally written for DevOpsDaycamp https://devopsbootcamp.osuosl.org/daycamp/
+the idea is that you have a base image, the Dockerfile, that you would like to
+customize for n different people.  In this case we just want different usernames,
+passwords, and ports designated for individual HTTP and SSH access.
+
+The Dockerfile declares the set of packages and there is an array inside 
+makecontainers.py which declares the usernames.
