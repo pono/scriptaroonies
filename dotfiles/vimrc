@@ -1,0 +1,26 @@
+set autoindent shiftwidth=2 expandtab
+set tabstop=2 smartindent smarttab
+set cursorline
+set paste
+set ruler
+set mouse=a
+syntax enable
+set smartcase
+set number                    
+set laststatus=2
+set colorcolumn=80
+
+" These lines make vim load various plugins
+filetype on
+filetype indent on
+filetype plugin on
+
+" No tabs!
+set expandtab
+
+
+if has("autocmd")
+  au BufReadPost *.rkt,*.rktl set filetype=racket
+  au filetype racket set lisp
+  au filetype racket set autoindent
+endif
