@@ -11,31 +11,32 @@ username = os.environ['GH_USER']
 
 p = argparse.ArgumentParser()
 
-p.add_argument("--issues", help="Issues can be True or False")
-p.add_argument("--repository", help="Which repository?")
-p.add_argument("--wiki", help="Wiki can be True or False")
-
+p.add_argument("--issues", help="Issues can be True or False", type = lambda s : s, choices=["True", "true", "False", "false"])
+p.add_argument("--wiki", help="Wiki can be True or False", type = lambda s : s, choices=["True", "true", "False", "false"])
+p.add_argument("--repository", help="Which repository?", type = lambda s : s)
 
 gh = Github(username, access_token)
 
 args = p.parse_args()
 
-notlist = [r.name for r in gh.get_user().get_repos()]
-print("The list of repositories is:",notlist)
+repolist = [r.name for r in gh.get_user().get_repos()]
+print("The list of repositories is:",repolist)
 
-if args.repository in notlist:
+print("args is: ", args)
+
+if args.repository in repolist:
 	repo = gh.get_user().get_repo(args.repository)
 	print("Your repo: ", args.repository, " is real!")
 
-	if args.issues == 'True':
+	if args.issues == 'true':
 		repo.edit(has_issues=True)
 		print("Issues turned on")
-	elif args.issues == 'False':
+	elif args.issues == 'false':
 		repo.edit(has_issues=False)
 		print("Issues turned off")
-	if args.wiki == 'True':
+	if args.wiki == 'true':
 		repo.edit(has_wiki=True)
 		print("Wiki turned on")
-	elif args.wiki == 'False':
+	elif args.wiki == 'false':
 		repo.edit(has_wiki=False)
 		print("Wiki turned off")
