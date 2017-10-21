@@ -20,10 +20,7 @@ gh = Github(username, access_token)
 
 args = p.parse_args()
 
-notlist = []
-for i in gh.get_user().get_repos():
-	notlist += [i.name]
-
+notlist = [r.name for r in gh.get_user().get_repos()]
 print("The list of repositories is:",notlist)
 
 if args.repository in notlist:
