@@ -12,7 +12,6 @@ username = os.environ['GH_USER']
 p = argparse.ArgumentParser()
 
 p.add_argument("--issues", help="Issues can be True or False")
-p.add_argument("--list", help="List repos")
 p.add_argument("--repository", help="Which repository?")
 p.add_argument("--wiki", help="Wiki can be True or False")
 
@@ -25,10 +24,7 @@ notlist = []
 for i in gh.get_user().get_repos():
 	notlist += [i.name]
 
-print(args.repository, notlist)
-
-if args.list:
-        print(notlist)
+print("The list of repositories is:",notlist)
 
 if args.repository in notlist:
 	repo = gh.get_user().get_repo(args.repository)
